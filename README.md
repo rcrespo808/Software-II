@@ -13,3 +13,6 @@ Instalar Nodejs (https://nodejs.org/en/download/)
 Run on an admin powershell:
     Instalar Choco (https://chocolatey.org/install)
     Instalar Meteor (https://www.meteor.com/install)
+
+Base de Datos:
+    MongoDB 4.2.3 (https://www.mongodb.com/download-center/community)
