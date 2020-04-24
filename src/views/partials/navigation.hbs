@@ -15,17 +15,49 @@
       </ul>
       <ul class="navbar-nav ml-auto">
         {{#if user}}
+
+          {{!-- OCulte el menu de Notas
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Notas 
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="/notes">Todas las Notas</a>
-              <a class="dropdown-item" href="/notes/add">Agregar Nota</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="/users/logout">Salir</a>
+              <a class="dropdown-item" href="/notes">Ver</a>
+              <a class="dropdown-item" href="/notes/add">Agregar</a>
+            </div>
+          </li> 
+          --}}
+
+          <li class="nav-item">
+            <a class="nav-link" href="/users/therapist">Terapeuta</a>
+          </li>     
+          <li class="nav-item">
+            <a class="nav-link" href="/users/logout">Salir</a>
+          </li>
+
+{{! No se como hacer el else if, intente todo}}
+
+        {{else user/therapist}}              
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Subir 
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="/images/add">Imagen</a>
             </div>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/users/consultant">Consultante</a>
+          </li>                      
+          <li class="nav-item">
+            <a class="nav-link" href="/users/logout">Salir</a>
+          </li>  
+
+        {{else if user/consultant}}    
+          <li class="nav-item">
+            <a class="nav-link" href="/users/logout">Salir</a>
+          </li> 
+
         {{else}}
           <li class="nav-item">
             <a class="nav-link" href="/users/signin">Log In</a>
@@ -34,18 +66,4 @@
       </ul>
     </div>
   </div>
-  <div class="container">
-        <a class="navbar-brand" href="/">Photo Gallery</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
-            aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="/images/add">Add Image</a>
-                </li>
-            </ul>
-        </div>
-    </div>
 </nav>

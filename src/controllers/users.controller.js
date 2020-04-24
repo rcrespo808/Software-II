@@ -14,10 +14,10 @@ usersCtrl.createConsultant = async (req, res) => {
   let errors = [];
   const { name, email, password, confirm_password } = req.body;
   if (password != confirm_password) {
-    errors.push({ text: "Passwords do not match." });
+    errors.push({ text: "Contrasenas no son Iguales" });
   }
   if (password.length < 4) {
-    errors.push({ text: "Passwords must be at least 4 characters." });
+    errors.push({ text: "Ingrese Contrasena con Minimo 4 Caracteres" });
   }
   if (errors.length > 0) {
     res.render("users/consultant", {
@@ -31,14 +31,14 @@ usersCtrl.createConsultant = async (req, res) => {
     // Look for email coincidence
     const emailUser = await User.findOne({ email: email });
     if (emailUser) {
-      req.flash("error_msg", "The Email is already in use.");
+      req.flash("error_msg", "El Correo ya esta Siendo Utilizado");
       res.redirect("/users/consultant");
     } else {
       // Saving a New User
       const newUser = new User({ name, email, password, userType:"Consultant" });
       newUser.password = await newUser.encryptPassword(password);
       await newUser.save();
-      req.flash("success_msg", "You are registered.");
+      req.flash("success_msg", "Registrado Exitosamente");
       res.redirect("/users/signin");
     }
   }
@@ -48,10 +48,10 @@ usersCtrl.createTherapist = async (req, res) => {
   let errors = [];
   const { name, email, password, confirm_password } = req.body;
   if (password != confirm_password) {
-    errors.push({ text: "Passwords do not match." });
+    errors.push({ text: "Contrasenas no son Iguales" });
   }
   if (password.length < 4) {
-    errors.push({ text: "Passwords must be at least 4 characters." });
+    errors.push({ text: "Ingrese Contrasena con Minimo 4 Caracteres" });
   }
   if (errors.length > 0) {
     res.render("users/therapist", {
@@ -65,14 +65,14 @@ usersCtrl.createTherapist = async (req, res) => {
     // Look for email coincidence
     const emailUser = await User.findOne({ email: email });
     if (emailUser) {
-      req.flash("error_msg", "The Email is already in use.");
+      req.flash("error_msg", "El Correo ya esta Siendo Utilizado");
       res.redirect("/users/therapist");
     } else {
       // Saving a New User
       const newUser = new User({ name, email, password, userType:"Therapist" });
       newUser.password = await newUser.encryptPassword(password);
       await newUser.save();
-      req.flash("success_msg", "Registrado con exito");
+      req.flash("success_msg", "Registrado Exitosamente");
       res.redirect("/users/signin");
     }
   }
@@ -87,7 +87,7 @@ usersCtrl.renderTherapistForm = (req, res) => {
 };
 
 usersCtrl.signin = passport.authenticate("local", {
-    successRedirect: "/notes",
+    successRedirect: "/index",
     failureRedirect: "/users/signin",
     failureFlash: true
   });
