@@ -87,7 +87,7 @@ usersCtrl.renderTherapistForm = (req, res) => {
 };
 
 usersCtrl.signin = passport.authenticate("local", {
-    successRedirect: "/index",
+    successRedirect: "/notes",
     failureRedirect: "/users/signin",
     failureFlash: true
   });
