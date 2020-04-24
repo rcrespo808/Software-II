@@ -72,7 +72,7 @@ usersCtrl.createTherapist = async (req, res) => {
       const newUser = new User({ name, email, password, userType:"Therapist" });
       newUser.password = await newUser.encryptPassword(password);
       await newUser.save();
-      req.flash("success_msg", "You are registered.");
+      req.flash("success_msg", "Registrado con exito");
       res.redirect("/users/signin");
     }
   }
@@ -94,7 +94,7 @@ usersCtrl.signin = passport.authenticate("local", {
 
 usersCtrl.logout = (req, res) => {
   req.logout();
-  req.flash("success_msg", "You are logged out now.");
+  req.flash("success_msg", "Salio con exito!");
   res.redirect("/users/signin");
 };
 
