@@ -1,17 +1,23 @@
 const router = require("express").Router();
 
 const {
-  renderSignUpForm,
-  singup,
+  renderConsultantForm,
+  createConsultant,
+  renderTherapistForm,
+  createTherapist,
   renderSigninForm,
   signin,
   logout
 } = require("../controllers/users.controller");
 
 // Routes
-router.get("/users/signup", renderSignUpForm);
+router.get("/users/consultant", renderConsultantForm);
 
-router.post("/users/signup", singup);
+router.post("/users/consultant", createConsultant);
+
+router.get("/users/therapist", renderTherapistForm);
+
+router.post("/users/therapist", createTherapist);
 
 router.get("/users/signin", renderSigninForm);
 
