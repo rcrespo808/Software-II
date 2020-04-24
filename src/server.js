@@ -7,8 +7,6 @@ const flash = require('connect-flash');
 const passport = require('passport');
 const morgan = require('morgan');
 const multer = require('multer');
-const path = require('path');
-const exphbs = require('express-handlebars');
 const Handlebars = require('handlebars');
 
 
