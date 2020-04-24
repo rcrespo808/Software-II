@@ -15,50 +15,16 @@
       </ul>
       <ul class="navbar-nav ml-auto">
         {{#if user}}
-
-          {{!-- OCulte el menu de Notas
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Notas 
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="/notes">Ver</a>
-              <a class="dropdown-item" href="/notes/add">Agregar</a>
-            </div>
-          </li> 
-          --}}
-
           <li class="nav-item">
             <a class="nav-link" href="/users/therapist">Terapeuta</a>
+          </li>      
+          <li class="nav-item">
+            <a class="nav-link" href="/users/consultant">Consultante</a>
           </li>     
           <li class="nav-item">
             <a class="nav-link" href="/users/logout">Salir</a>
           </li>
 
-{{! No se como hacer el else if, intente todo}}
-
-        {{else user/therapist}}              
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Subir 
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="/images/add">Imagen</a>
-            </div>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/users/consultant">Consultante</a>
-          </li>                      
-          <li class="nav-item">
-            <a class="nav-link" href="/users/logout">Salir</a>
-          </li>  
-
-        {{else if user/consultant}}    
-          <li class="nav-item">
-            <a class="nav-link" href="/users/logout">Salir</a>
-          </li> 
-
-        {{else}}
           <li class="nav-item">
             <a class="nav-link" href="/users/signin">Log In</a>
           </li>
