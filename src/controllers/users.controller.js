@@ -32,7 +32,7 @@ usersCtrl.createConsultant = async (req, res) => {
     const emailUser = await User.findOne({ email: email });
     if (emailUser) {
       req.flash("error_msg", "The Email is already in use.");
-      res.redirect("/users/signup");
+      res.redirect("/users/consultant");
     } else {
       // Saving a New User
       const newUser = new User({ name, email, password, userType:"Consultant" });
@@ -66,7 +66,7 @@ usersCtrl.createTherapist = async (req, res) => {
     const emailUser = await User.findOne({ email: email });
     if (emailUser) {
       req.flash("error_msg", "The Email is already in use.");
-      res.redirect("/users/signup");
+      res.redirect("/users/therapist");
     } else {
       // Saving a New User
       const newUser = new User({ name, email, password, userType:"Therapist" });
