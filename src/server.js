@@ -5,16 +5,23 @@ const methodOverride = require('method-override');
 const session = require('express-session');
 const flash = require('connect-flash');
 const passport = require('passport');
+const morgan = require('morgan');
+const multer = require('multer');
+const Handlebars = require('handlebars');
+
 
 // Initializations
 const app = express();
 require('./config/passport');
+const {allowInsecurePrototypeAccess} = require('@handlebars/allow-prototype-access');
+
 
 // settings
 app.set('port', process.env.PORT || 4000);
 app.set('views', path.join(__dirname, 'views'));
 app.engine('.hbs', exphbs({
   defaultLayout: 'main',
+  handlebars: allowInsecurePrototypeAccess(Handlebars),
   layoutsDir: path.join(app.get('views'), 'layouts'),
   partialsDir: path.join(app.get('views'), 'partials'),
   extname: '.hbs'
@@ -32,6 +39,17 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
+app.use(morgan('dev'));
+app.use(express.json(   ));
+app.use(express.urlencoded({extended: false}));
+const storage = multer.diskStorage({
+    destination: path.join(__dirname, 'public/uploads'),
+    filename: (req, file, cb) => {
+        cb(null, new Date().getTime() + path.extname(file.originalname));
+    }
+});
+app.use(multer({storage}).single('image'));
+
 
 // Global Variables
 app.use((req, res, next) => {
@@ -46,7 +64,7 @@ app.use((req, res, next) => {
 app.use(require('./routes/index.routes'));
 app.use(require('./routes/users.routes'));
 app.use(require('./routes/notes.routes'));
-
+app.use(require('./routes/photos.routes'));
 // static files
 app.use(express.static(path.join(__dirname, 'public')));
 
