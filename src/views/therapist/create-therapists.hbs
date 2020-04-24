@@ -2,12 +2,9 @@
     <div class="col-md-4">
         <div class="card">
             <div class="card-   ">
-                <form action="/consultant" method="POST" enctype="multipart/form-data">
+                <form action="/terapeuta" method="POST" enctype="multipart/form-data">
                      <div class="form-group">
                         <input type="text" name="ID_terapeuta" class="form-control" placeholder=" ID Terapueta" autofocus>
-                    </div>
-                     <div class="form-group">
-                        <input type="text" name="ID_consulante" class="form-control" placeholder="ID Consultante" autofocus>
                     </div>
                     <div class="form-group">
                         <input type="text" name="first-name" class="form-control" placeholder="Nombre" autofocus>
@@ -23,7 +20,10 @@
                     </div> 
                     <div class="form-group">
                         <input type="date" name="birthdate" class="form-control" placeholder="Fecha de Nacimiento" autofocus>
-                    </div>                                                                               
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="specialty" class="form-control" placeholder="Especialidad" autofocus>
+                    </div>                                                                                                   
                     <button class="btn btn-primary">
                         Crear
                     </button>
@@ -36,24 +36,24 @@
             <thead>
                 <tr>
                     <th>ID Terapeuta</th>
-                    <th>ID Paciente</th>
                     <th>Nombre</th>
                     <th>Apellido</th>
                     <th>Genero</th>
                     <th>Edad</th>
-                    <th>Fecha de Nacimiento</th>                   
+                    <th>Fecha de Nacimiento</th>
+                    <th>Especialidad</th>                                      
                 </tr>
             </thead>
             <tbody>
                 {{#each consultantes}}
                 <tr>
                     <td>{{ID_terapeuta}}</td>
-                    <td>{{ID_consultante}}</td>
                     <td>{{first-name}}</td>
                     <td>{{last-name}}</td>
                     <td>{{gender}}</td>
                     <td>{{age}}</td>
                     <td>{{birthday}}</td>
+                    <td>{{specialty}}</td>                    
                 </tr>
                 {{/each}}
             </tbody>
