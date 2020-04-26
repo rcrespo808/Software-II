@@ -15,16 +15,24 @@
       </ul>
       <ul class="navbar-nav ml-auto">
         {{#if user}}
-          <li class="nav-item">
-            <a class="nav-link" href="/users/therapist">Terapeuta</a>
-          </li>      
-          <li class="nav-item">
-            <a class="nav-link" href="/users/consultant">Consultante</a>
-          </li>     
+          {{#if user.isTherapist}}
+            <li class="nav-item">
+              <a class="nav-link" href="/users/consultant">Consultante</a>
+            </li>   
+
+            <li class="nav-item">
+              <a class="nav-link" href="/images/add">Imagenes</a>
+            </li>
+          {{/if}}
+          {{#if user.isAdmin}}
+            <li class="nav-item">
+              <a class="nav-link" href="/users/therapist">Terapeuta</a>
+            </li>
+          {{/if}}  
           <li class="nav-item">
             <a class="nav-link" href="/users/logout">Salir</a>
           </li>
-
+        {{else}}
           <li class="nav-item">
             <a class="nav-link" href="/users/signin">Log In</a>
           </li>

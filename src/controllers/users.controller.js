@@ -35,7 +35,7 @@ usersCtrl.createConsultant = async (req, res) => {
       res.redirect("/users/consultant");
     } else {
       // Saving a New User
-      const newUser = new User({ name, email, password, userType:"Consultant" });
+      const newUser = new User({ name, email, password });
       newUser.password = await newUser.encryptPassword(password);
       await newUser.save();
       req.flash("success_msg", "Registrado Exitosamente");
@@ -69,7 +69,7 @@ usersCtrl.createTherapist = async (req, res) => {
       res.redirect("/users/therapist");
     } else {
       // Saving a New User
-      const newUser = new User({ name, email, password, userType:"Therapist" });
+      const newUser = new User({ name, email, password, isTherapist:true });
       newUser.password = await newUser.encryptPassword(password);
       await newUser.save();
       req.flash("success_msg", "Registrado Exitosamente");
