@@ -27,7 +27,7 @@ consultantCtrl.createConsultant = async (req, res) => {
     errors.push({ text: "Por favor ingresar una Fecha de nacimiento" });
   }
   if (errors.length > 0) {
-    res.render("notes/edit-consultant", {
+    res.render("consultant/modify-consultant", {
       errors,firstName, lastName, gender, age, birthDate
     });
   } else {

@@ -9,4 +9,4 @@ const ConsultantSchema = new Schema({
   person:{type: Person, required: true}
 });
 
-module.exports = model('Consultant', Consultant);
+module.exports = model('Consultant', ConsultantSchema);
