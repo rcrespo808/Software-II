@@ -33,13 +33,13 @@ router.get('/images/consul', isAuthenticated, async (req, res) => {
 });
 //mostrarla
 router.post('/images/add', isAuthenticated, async (req, res) => {
-    const { ID_Ter, ID_Pac, title, description } = req.body;
+    const { ID_Ter, ID_Pac,TipoArchivo, title, description } = req.body;
     console.log('funciona1');
    
     // Saving Image in Cloudinary
     try {
         const result = await cloudinary.v2.uploader.upload(req.file.path);
-        const newPhoto = new Photo({ID_Ter, ID_Pac, title, description, imageURL: result.url, public_id: result.public_id});
+        const newPhoto = new Photo({ID_Ter, ID_Pac,TipoArchivo, title, description, imageURL: result.url, public_id: result.public_id});
        console.log('funcionacloud');
         await newPhoto.save();
         console.log('funcionamongo');
@@ -75,6 +75,7 @@ router.get('/images/download/:photo_id', isAuthenticated, async (req, res) => {
 
 module.exports = router;
 //////////////////////////////////////////+
+
 
 
 
