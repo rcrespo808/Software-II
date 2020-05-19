@@ -22,6 +22,7 @@ usersCtrl.createConsultant = async (req, res) => {
   if (errors.length > 0) {
     res.render("users/consultant", {
       errors,
+      Id,
       name,
       email,
       password,
@@ -57,6 +58,7 @@ usersCtrl.createTherapist = async (req, res) => {
     res.render("users/therapist", {
       errors,
       name,
+      Id,
       email,
       password,
       confirm_password

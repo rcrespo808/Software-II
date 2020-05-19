@@ -1,13 +1,17 @@
 <div class="row">
-
-    <div class="col-md-4">
+   <div class="col-md-4">
+        
         <div class="card">
+            <h1>Hola {{user.name}}</h1>
+                 
             <div class="card-   ">
+         
                 <form action="/images/add" method="POST" enctype="multipart/form-data">
                      <div class="form-group">
-                        <input type="text" name="ID_Ter" class="form-control" placeholder=" ID_T" autofocus>
+                        <input type="text" name="ID_Ter" class="form-control"    value= {{user.id}} autofocus>
                     </div>
                      <div class="form-group">
+                        
                         <input type="text" name="ID_Pac" class="form-control" placeholder="ID_P" autofocus>
                     </div>
                     <div class="form-group">
@@ -51,6 +55,8 @@
                     <td>{{description}}</td>
                     <td>
                         <a href="{{imageURL}}" target="_blank" class="btn btn-primary">View</a>
+                        <a href="/images/update/{{_id}}"  class="btn btn-primary">update</a>
+                        <a href="/images/download/{{_id}}" download="new" target="_blank" class="btn btn-primary">Descargar </a>
                         <a href="/images/delete/{{_id}}" class="btn btn-danger">Delete</a>
                     </td>
                 </tr>

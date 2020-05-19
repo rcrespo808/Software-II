@@ -3,6 +3,7 @@
   <div class="col-md-3">
     <div class="card">
       <div class="card-body">
+        
         <h4 class="card-title d-flex justify-content-between align-items-center">
           {{ title }} <a href="/notes/edit/{{_id}}"><i class="fas fa-edit"></i></a>
         </h4>
@@ -15,9 +16,7 @@
       </div>
     </div>
   </div>
-  {{!--
-  Desc: Oculta mensaje para crear primer nota
-  {{else}}
+ {{else}}
   <div class="card mx-auto">
     <div class="card-body">
       <h1>Hola {{user.name}}</h1>
@@ -25,6 +24,5 @@
       <a href="/notes/add" class="btn btn-success btn-block">Crea Una!</a>
     </div>
   </div>
-  --}}
   {{/each}}
 </div>
