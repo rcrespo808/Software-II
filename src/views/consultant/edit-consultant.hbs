@@ -1,32 +1,62 @@
-{{#each errors}}
-<div class="alert alert-danger alert-dismissible fade show" role="alert">
-  {{text}}
-  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-    <span aria-hidden="true">&times;</span>
-  </button>
-</div>
-{{/each}}
-
-<div class="col-md-4 mx-auto">
-  <div class="card">
-    <div class="card-header">
-      <h3>Editar Consultante</h3>
+<div class="row">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-   ">
+                <form action="/consultant" method="PUT" enctype="multipart/form-data">
+                     <div class="form-group">
+                        <input type="text" name="ID_terapeuta" class="form-control" placeholder="{{ID_therapist}}" autofocus>
+                    </div>
+                     <div class="form-group">
+                        <input type="text" name="ID_consulante" class="form-control" placeholder="{{ID_consultant}}" autofocus>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="first-name" class="form-control" placeholder="{{first-name}}"autofocus>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="last-name" class="form-control" placeholder="{{last-name}}" autofocus>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="gender" class="form-control" placeholder="{{gender}}" autofocus>
+                    </div> 
+                    <div class="form-group">
+                        <input type="int" name="age" class="form-control" placeholder="{{age}}" autofocus>
+                    </div> 
+                    <div class="form-group">
+                        <input type="date" name="birthdate" class="form-control" placeholder="{{birthdate}}" autofocus>
+                    </div>                                                                               
+                    <button class="btn btn-primary">
+                        Modificar
+                    </button>
+                </form>
+            </div>
+        </div>
     </div>
-    <div class="card-body">
-      <form action="/notes/edit-note/{{note._id}}?_method=PUT" method="POST">
-        <input type="hidden" name="_method" value="PUT">
-        <div class="form-group">
-          <input type="text" name="title" class="form-control" value="{{note.title}}"/>
-        </div>
-        <div class="form-group">
-          <textarea name="description" class="form-control">{{note.description}}</textarea>
-        </div>
-        <div class="form-group">
-          <button class="btn btn-primary btn-block" type="submit">
-            Guardar
-          </button>
-        </div>
-      </form>
+    <div class="col-md-8">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID Terapeuta</th>
+                    <th>ID Paciente</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Genero</th>
+                    <th>Edad</th>
+                    <th>Fecha de Nacimiento</th>                   
+                </tr>
+            </thead>
+            <tbody>
+                {{#each consultantes}}
+                <tr>
+                    <td>{{ID_therapist}}</td>
+                    <td>{{ID_consultant}}</td>
+                    <td>{{first-name}}</td>
+                    <td>{{last-name}}</td>
+                    <td>{{gender}}</td>
+                    <td>{{age}}</td>
+                    <td>{{birthdate}}</td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
     </div>
-  </div>
 </div>

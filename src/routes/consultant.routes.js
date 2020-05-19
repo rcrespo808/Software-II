@@ -2,19 +2,29 @@ const router = require("express").Router();
 
 const {
   renderConsultantForm,
-  createConsultant,
+  createNewConsultant,
+  renderConsultants,
+  renderEditform,
   updateConsultant,
   deleteConsultant
 } = require("../controllers/consultant.controller");
 
-// Routes
-router.get("/consultant", renderConsultantForm);
+module.exports = router;
 
-router.post("/consultant", createConsultant);
+// New Consultant
+router.get("/consultant/add", isAuthenticated, renderConsultantForm);
 
-router.put("/consultant/update/:id", updateConsultant);
+router.post("/consultant/new-consultant", isAuthenticated, createNewConsultant);
 
-router.delete("/consultant/delete/:id", deleteConsultant);
+// Get All Notes
+router.get("/consultant", isAuthenticated, renderConsultants);
 
+// Edit Notes
+router.get("/consultant/edit/:id", isAuthenticated, renderEditForm);
+
+router.put("/consultant/edit-consultant/:id", isAuthenticated, updateConsultant);
+
+// Delete Notes
+router.delete("/consultant/delete/:id", isAuthenticated, deleteConsultant);
 
 module.exports = router;

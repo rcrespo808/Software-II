@@ -23,7 +23,7 @@ notesCtrl.createNewNote = async (req, res) => {
       description
     });
   } else {
-    const newNote = new Note({ title, description });
+    const newNote = new Note({title, description});
     newNote.user = req.user.id;
     await newNote.save();
     req.flash("success_msg", "Nota Agregado Exitosamente");
