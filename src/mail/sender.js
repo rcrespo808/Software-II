@@ -12,12 +12,6 @@ sender.transporter = nodemailer.createTransport({
 });
 
 // Step 2
-sender.mailOptions = {
-    from: 'ApoyoTerapia@gmail.com', 
-    to: 'rcrespo808@gmail.com', 
-    subject: 'Nodemailer - Test',
-    text: 'Wooohooo it works!!'
-};
 
 sender.sendmailWithOptions = async (options) => {
     sender.mailOptions.from = options.from || 'ApoyoTerapia@gmail.com';
@@ -27,13 +21,11 @@ sender.sendmailWithOptions = async (options) => {
     sender.mailOptions.template = options.template;
     sender.mailOptions.context = options.context;
     
+    return sender.transporter.sendMail(mailOptions, (err, data) => {
+        if (err) {
+            return log('Error occurs');
+        }
+        return log('Email sent!!!');
+    });
 };
-
-// Step 3
-sender.sendMail = transporter.sendMail(mailOptions, (err, data) => {
-    if (err) {
-        return log('Error occurs');
-    }
-    return log('Email sent!!!');
-});
 
