@@ -2,17 +2,16 @@ const consultantCtrl = {};
 
 // Models
 const Consultant = require("../models/Consultant");
-const Person = require("../models/Person");
 
 consultantCtrl.renderConsultantForm = (req, res) => {
   res.render("consultant/new-consultant");
 };
 
-consultantCtrl.createConsultant = async (req, res) => {
-  const { id, firstName, lastName, gender, age, birthDate  } = req.body;
+consultantCtrl.createNewConsultant = async (req, res) => {
+  const { firstName, lastName, gender, age, birthDate } = req.body;
   const errors = [];
   if (!firstName) {
-    errors.push({ text: "Porfavor ingresar un Nombre." });
+    errors.push({ text: "Porfavor ingresar un Nombre" });
   }
   if (!lastName) {
     errors.push({ text: "Porfavor ingresar un Apellido" });
@@ -32,10 +31,9 @@ consultantCtrl.createConsultant = async (req, res) => {
     });
   } else {
     const newConsultant = new Consultant({firstName, lastName, gender, age, birthDate});
-    newConsultant.therapist = req.user.id;
+    newConsultant.user = req.user.id;
     await newConsultant.save();
-    req.flash("success_msg", "Consultant agregado con exito");
-    res.redirect("/consultant");
+    res.redirect("../users/consultant");
   }
 };
 
@@ -44,9 +42,9 @@ consultantCtrl.renderConsultants = async (req, res) => {
   res.render("consultant/all-consultants", { consultants });
 };
 
-consultantCtrl.renderEditConsultant = async (req, res) => {
+consultantCtrl.renderEditForm = async (req, res) => {
   const consultant = await Consultant.findById(req.params.id);
-  if (consultant.therapist != req.user.id) {
+  if (consultant.user != req.user.id) {
     req.flash("error_msg", "No Autorizado");
     return res.redirect("/consultant");
   }

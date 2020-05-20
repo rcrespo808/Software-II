@@ -1,62 +1,31 @@
 <div class="row">
     <div class="col-md-4">
         <div class="card">
-            <div class="card-   ">
-                <form action="/therapist" method="POST" enctype="multipart/form-data">
-                     <div class="form-group">
-                        <input type="text" name="ID_terapeuta" class="form-control" placeholder=" ID Terapueta" autofocus>
+            <div class="card-header">
+                Crear Terapeuta
+            </div>
+            <div class="card-body">
+                <form id="Test" action="/therapist/new-therapist" method="POST" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <input id="userInput" type="text" name="firstName" class="form-control" placeholder="Nombre" autofocus>
                     </div>
                     <div class="form-group">
-                        <input type="text" name="first-name" class="form-control" placeholder="Nombre" autofocus>
+                        <input type="text" name="lastName" class="form-control" placeholder="Apellido" autofocus>
                     </div>
                     <div class="form-group">
-                        <input type="text" name="last-name" class="form-control" placeholder="Apellido" autofocus>
-                    </div>
-                    <div class="form-group"> 
                         <input type="text" name="gender" class="form-control" placeholder="Genero" autofocus>
                     </div> 
                     <div class="form-group">
                         <input type="int" name="age" class="form-control" placeholder="Edad" autofocus>
                     </div> 
                     <div class="form-group">
-                        <input type="date" name="birthdate" class="form-control" placeholder="Fecha de Nacimiento" autofocus>
-                    </div>
-                    <div class="form-group">
-                        <input type="text" name="specialty" class="form-control" placeholder="Especialidad" autofocus>
-                    </div>                                                                                                   
+                        <input type="date" name="birthDate" class="form-control" placeholder="Fecha de Nacimiento" autofocus>
+                    </div>                                                                               
                     <button class="btn btn-primary">
                         Crear
                     </button>
                 </form>
             </div>
         </div>
-    </div>
-    <div class="col-md-8">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>ID Terapeuta</th>
-                    <th>Nombre</th>
-                    <th>Apellido</th>
-                    <th>Genero</th>
-                    <th>Edad</th>
-                    <th>Fecha de Nacimiento</th>
-                    <th>Especialidad</th>                                      
-                </tr>
-            </thead>
-            <tbody>
-                {{#each consultantes}}
-                <tr>
-                    <td>{{ID_terapeuta}}</td>
-                    <td>{{first-name}}</td>
-                    <td>{{last-name}}</td>
-                    <td>{{gender}}</td>
-                    <td>{{age}}</td>
-                    <td>{{birthday}}</td>
-                    <td>{{specialty}}</td>                    
-                </tr>
-                {{/each}}
-            </tbody>
-        </table>
     </div>
 </div>

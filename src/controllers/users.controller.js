@@ -6,10 +6,6 @@ const User = require('../models/User');
 // Modules
 const passport = require("passport");
 
-usersCtrl.renderConsultantForm = (req, res) => {
-  res.render('users/consultant');
-};
-
 usersCtrl.createConsultant = async (req, res) => {
   let errors = [];
   const { name, email, password, confirm_password } = req.body;
@@ -40,7 +36,7 @@ usersCtrl.createConsultant = async (req, res) => {
       newUser.password = await newUser.encryptPassword(password);
       await newUser.save();
       req.flash("success_msg", "Registrado Exitosamente");
-      res.redirect("/users/signin");
+      res.redirect("/consultant");
     }
   }
 };
@@ -75,7 +71,7 @@ usersCtrl.createTherapist = async (req, res) => {
       newUser.password = await newUser.encryptPassword(password);
       await newUser.save();
       req.flash("success_msg", "Registrado Exitosamente");
-      res.redirect("/users/signin");
+      res.redirect("/therapist");
     }
   }
 };
@@ -84,12 +80,16 @@ usersCtrl.renderSigninForm = (req, res) => {
   res.render("users/signin");
 };
 
+usersCtrl.renderConsultantForm = (req, res) => {
+  res.render('users/consultant');
+};
+
 usersCtrl.renderTherapistForm = (req, res) => {
   res.render("users/therapist");
 };
 
 usersCtrl.signin = passport.authenticate("local", {
-    successRedirect: "/notes",
+    successRedirect: "/",
     failureRedirect: "/users/signin",
     failureFlash: true
   });

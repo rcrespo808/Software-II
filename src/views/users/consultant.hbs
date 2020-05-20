@@ -7,7 +7,7 @@
       <div class="card-body">
         <form action="/users/consultant" method="POST">
           <div class="form-group">
-            <input type="text" class="form-control" name="name" placeholder="Name" value="{{name}}">
+            <input type="text" class="form-control" name="name" placeholder={{objectToPass}} value="{{objectToPass}}">
           </div>
           <div class="form-group">
             <input type="email" class="form-control" name="email" placeholder="Email" value="{{email}}">
@@ -19,7 +19,7 @@
             <input type="password" class="form-control" name="confirm_password" placeholder="Confirm Password" value="{{confirm_password}}">
           </div>
           <div class="form-group">
-            <input type="hidden" class="form-control" name="usertype"  value="therapist">
+            <input type="hidden" class="form-control" name="usertype" value="therapist">
           </div>
           <button class="btn btn-primary btn-block">
             Signup 
@@ -29,3 +29,11 @@
     </div>
   </div>
 </div>
+
+<script>
+  var inputTest = localStorage.getItem('objectToPass');
+  var displayData = inputTest;
+  alert('Inserted Data' + inputTest);
+
+  localStorage.removeItem( 'objectToPass' ); // Clear the localStorage
+</script>

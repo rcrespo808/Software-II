@@ -2,17 +2,16 @@ const therapistCtrl = {};
 
 // Models
 const Therapist = require("../models/Therapist");
-const Person = require("../models/Person");
 
 therapistCtrl.renderTherapistForm = (req, res) => {
-  res.render("therapist/create-therapist");
+  res.render("therapist/new-therapist");
 };
 
-therapistCtrl.createTherapist = async (req, res) => {
+therapistCtrl.createNewTherapist = async (req, res) => {
   const { id, firstName, lastName, gender, age, birthDate  } = req.body;
   const errors = [];
   if (!firstName) {
-    errors.push({ text: "Por favor ingresar un Nombre." });
+    errors.push({ text: "Por favor ingresar un Nombre" });
   }
   if (!lastName) {
     errors.push({ text: "Por favor ingresar un Apellido" });
@@ -27,15 +26,14 @@ therapistCtrl.createTherapist = async (req, res) => {
     errors.push({ text: "Por favor ingresar una Fecha de nacimiento" });
   }
   if (errors.length > 0) {
-    res.render("notes/edit-consultant", {
+    res.render("therapist/new-therapist", {
       errors,firstName, lastName, gender, age, birthDate
     });
   } else {
-    const Person = new Person({ firstName, lastName, gender, age, birthDate});
-    const newTherapist = new Therapist({Person});
+    const newTherapist = new Therapist({firstName, lastName, gender, age, birthDate});
+    newTherapist.user = req.user.id;
     await newTherapist.save();
-    req.flash("success_msg", "Therapist Added Successfully");
-    res.redirect("/therapist/create-therapist");
+    res.redirect("../users/therapist");
   }
 };
 
@@ -44,22 +42,26 @@ therapistCtrl.renderTherapists = async (req, res) => {
   res.render("therapist/all-therapists", { therapists });
 };
 
-therapistCtrl.renderEditTherapist = async (req, res) => {
+therapistCtrl.renderEditForm = async (req, res) => {
   const therapist = await Therapist.findById(req.params.id);
-  res.render("therapist/edit-therapist", { consultant });
+  if (therapist.user != req.user.id) {
+    req.flash("error_msg", "No Autorizado");
+    return res.redirect("/therapist");
+  }
+  res.render("therapist/edit-therapist", { therapist });
 };
 
 therapistCtrl.updateTherapist = async (req, res) => {
   const { firstName, lastName, gender, age, birthDate} = req.body;
   await Therapist.findByIdAndUpdate(req.params.id, { firstName, lastName, gender, age, birthDate});
-  req.flash("success_msg", "Therapist Updated Successfully");
-  res.redirect("/all-therapists");
+  req.flash("success_msg", "Terapeuta agregado con exito");
+  res.redirect("/therapist");
 };
 
 therapistCtrl.deleteTherapist = async (req, res) => {
   await Therapist.findByIdAndDelete(req.params.id);
-  req.flash("success_msg", "Therapist Deleted Successfully");
-  res.redirect("/all-therapists");
+  req.flash("success_msg", "Terapeuta eliminado con exito");
+  res.redirect("/therapist");
 };
 
 module.exports = therapistCtrl;

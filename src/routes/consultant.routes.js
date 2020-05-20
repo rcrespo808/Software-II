@@ -4,27 +4,30 @@ const {
   renderConsultantForm,
   createNewConsultant,
   renderConsultants,
-  renderEditform,
+  renderEditForm,
   updateConsultant,
   deleteConsultant
 } = require("../controllers/consultant.controller");
 
 module.exports = router;
 
+// Helpers
+const { isAuthenticated } = require("../helpers/auth");
+
 // New Consultant
 router.get("/consultant/add", isAuthenticated, renderConsultantForm);
 
 router.post("/consultant/new-consultant", isAuthenticated, createNewConsultant);
 
-// Get All Notes
+// All Consultants
 router.get("/consultant", isAuthenticated, renderConsultants);
 
-// Edit Notes
+// Edit Consultants
 router.get("/consultant/edit/:id", isAuthenticated, renderEditForm);
 
 router.put("/consultant/edit-consultant/:id", isAuthenticated, updateConsultant);
 
-// Delete Notes
+// Delete Consultants
 router.delete("/consultant/delete/:id", isAuthenticated, deleteConsultant);
 
 module.exports = router;

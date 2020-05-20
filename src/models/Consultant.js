@@ -1,12 +1,15 @@
 const { Schema, model } = require("mongoose");
 
-const bcrypt = require("bcryptjs");
-const Person = require("../models/Person");
+const ConsultantSchema = new Schema(
+  {
+    firstName: { type: String, required: true },
+    lastName: { type: String, required: true },
+    gender: { type: String, required: true },
+    age: { type: Number, required: true },
+    birthDate: { type: Date, require: true},
+    user: {type: String, required: true}
+  },
+    {timestamps: true},
+);
 
-const ConsultantSchema = new Schema({
-  id: {type: Number},
-  therapist: {type: Number},
-  person:{type: Person, required: true}
-});
-
-module.exports = model('Consultant', ConsultantSchema);
+module.exports = model("Consultant", ConsultantSchema);
