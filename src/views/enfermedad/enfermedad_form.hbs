@@ -1,0 +1,81 @@
+<div class="row">
+   <div class="col-md-4">
+        
+        <div class="card">
+            <h1>Hola {{user.name}}</h1>
+             
+                    
+                
+            <div class="card-   ">
+         
+                <form action="/Enfermedad/add" method="POST" enctype="multipart/form-data">
+                                            
+                    <div class="form-group">
+                        <input type="text" name="title" class="form-control" placeholder="Image Title" autofocus>
+                    </div>
+                    
+                     
+                    <div class="form-group">
+                        <textarea name="description" class="form-control" placeholder="Image Description"></textarea>
+                    </div>
+                    
+                                
+                     <div class="form-group">
+                        
+                     <select id="Id_photo" name="Id_photo">
+                      {{#each photos}}
+                            <tr>  
+                    <option value= {{imageURL}}>{{title}}</option>
+                    </tr>
+                     {{/each}}
+                    </select>
+                   </div>
+                    <button class="btn btn-primary">
+                        Upload 
+                    </button>
+                </form>
+            </div>
+           
+        </div>
+    </div>
+    <div class="col-md-8">
+        <table class="table">
+            <thead>
+                <tr>
+                  
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>contenido</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                {{#each enfermedades}}
+                <tr>
+                    
+                    <td>{{title}}</td>
+                    <td>{{description}}</td>
+                    <td><a href={{Id_photo}}><input type="button"  value="descargar el archivos"></a>
+                  </td>
+                  
+                    <td>
+                        <a   class="btn btn-primary" target="_blank" onclick='alert("Nose actualizar mongo, pero prometo hacerlo para la tecno :(")' >update</a>
+                         <a href="/Enfermedad/delete/{{_id}}" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+    <script>
+        function download(req) {
+     var a = req;
+     var b = a.substr(0,44);
+     var c = a.substr(44,100);
+     var d = b + "fl_attachment/" + c;
+    return d;
+  };
+    </script>>
