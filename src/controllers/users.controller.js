@@ -94,6 +94,12 @@ usersCtrl.signin = passport.authenticate("local", {
     failureFlash: true
   });
 
+usersCtrl.passwordReset = passport.authenticate("local", {
+  successRedirect: "/",
+  failureRedirect: "/users/signin",
+  failureFlash: true
+});
+
 usersCtrl.logout = (req, res) => {
   req.logout();
   req.flash("success_msg", "Salio con exito!");
