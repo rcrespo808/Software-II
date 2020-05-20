@@ -19,9 +19,17 @@
           <li class="nav-item">
               <a class="nav-link" href="/Enfermedad/add">Crear carpeta/enfermedad</a>
              <li class="nav-item">
-              <a class="nav-link" href="/images/add">Imagenes</a>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Consultante 
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="/consultant">Ver</a>
+                <a class="dropdown-item" href="/consultant/add">Agregar</a>
+              </div>
+            </li>
             <li class="nav-item">
-              <a class="nav-link" href="/users/consultant">consultante</a>
+              <a class="nav-link" href="/images/add">Imagenes</a>
             </li>
             {{else}}
               <li class="nav-item">
@@ -35,8 +43,14 @@
           
 
           {{#if user.isAdmin}}
-            <li class="nav-item">
-              <a class="nav-link" href="/users/therapist">Terapeuta</a>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Terapeuta 
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="/therapist">Ver</a>
+                <a class="dropdown-item" href="/therapist/add">Agregar</a>
+              </div>
             </li>
           {{/if}}  
           <li class="nav-item">

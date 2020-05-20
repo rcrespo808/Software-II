@@ -2,6 +2,7 @@ const notesCtrl = {};
 
 // Models
 const Note = require("../models/Note");
+const mail = require("../mail/sender")
 
 notesCtrl.renderNoteForm = (req, res) => {
   res.render("notes/new-note");
@@ -23,10 +24,22 @@ notesCtrl.createNewNote = async (req, res) => {
       description
     });
   } else {
-    const newNote = new Note({ title, description });
+    const newNote = new Note({title, description});
     newNote.user = req.user.id;
     await newNote.save();
     req.flash("success_msg", "Nota Agregado Exitosamente");
+    console.log ('mail?')
+    mail.sendmailWithOptions({
+      from: 'Apoyo_App@gmail.com',
+      to: 'rcrespo808@gmail.com',
+      subject: 'Nodemailer - Test',
+      text: 'Wooohooo it works!!',
+      template: 'index',
+      context: {
+          name: 'Usuario1',
+          hiperlink: 'www.google.com'
+      } 
+    });
     res.redirect("/notes");
   }
 };

@@ -1,15 +1,14 @@
 <div class="row">
-  {{#each notes}}
+  {{#each therapists}}
   <div class="col-md-3">
     <div class="card">
       <div class="card-body">
-        
         <h4 class="card-title d-flex justify-content-between align-items-center">
-          {{ title }} <a href="/notes/edit/{{_id}}"><i class="fas fa-edit"></i></a>
+          {{ firstName }} {{ lastName }}<a href="/therapist/edit/{{_id}}"><i class="fas fa-edit"></i></a>
         </h4>
-        <p>{{ description }} </p>
+        <p>{{ age }} year old, {{ gender }}</p>
         <!-- DELETE REQUEST -->
-        <form action="/notes/delete/{{_id}}?_method=DELETE" method="POST">
+        <form action="/therapist/delete/{{_id}}?_method=DELETE" method="POST">
           <input type="hidden" name="_method" value="DELETE">
           <button type="submit" class="btn btn-danger btn-block btn-sm">Eliminar</button>
         </form>
@@ -20,8 +19,8 @@
   <div class="card mx-auto">
     <div class="card-body">
       <h1>Hola {{user.name}}</h1>
-      <p clsss="lead">Aun no ha creado notas</p>
-      <a href="/notes/add" class="btn btn-success btn-block">Crea Una!</a>
+      <p clsss="lead">Aun no ha registrado ningun terapeuta</p>
+      <a href="/therapist/add" class="btn btn-success btn-block">Agrega Uno!</a>
     </div>
   </div>
   {{/each}}
