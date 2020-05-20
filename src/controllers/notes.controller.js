@@ -2,7 +2,6 @@ const notesCtrl = {};
 
 // Models
 const Note = require("../models/Note");
-const mail = require("../mail/sender")
 
 notesCtrl.renderNoteForm = (req, res) => {
   res.render("notes/new-note");
