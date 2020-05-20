@@ -10,6 +10,7 @@ consultantCtrl.renderConsultantForm = (req, res) => {
 consultantCtrl.createNewConsultant = async (req, res) => {
   const { firstName, lastName, gender, age, birthDate } = req.body;
   const errors = [];
+  
   if (!firstName) {
     errors.push({ text: "Porfavor ingresar un Nombre" });
   }
