@@ -1,0 +1,10 @@
+{{#each photos}}
+    <div class="card text-center border-primary mb-3">
+        <div class="card-body ">              
+            <img class="card-img-top" src="{{imageURL}}" alt="Card image cap">           
+            <h5 class="card-title">{{title}}</h5>
+            <p class="card-text">{{description}}</p>            
+            <a href="/images/download/{{_id}}" download="new" target="_blank" class="btn btn-primary buttonFormat">Descargar </a>                                       
+        </div>
+    </div>
+{{/each}} 

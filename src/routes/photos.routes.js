@@ -21,23 +21,26 @@ const Photoaud = require('../models/PhotoAudio');
 
 const fs = require('fs-extra');
 
-router.get('/', isAuthenticated, async (req, res) => {
-     
+router.get('/', isAuthenticated, async (req, res) => {    
     const photos = await Photo.find();
     res.render('images', {photos});
 });
 
-// Agregar
-router.get('/images/add', isAuthenticated, async (req, res) => {
+router.get('/images', isAuthenticated, async (req, res) => {
     const photos = await Photo.find({ ID_Ter: req.user.id });
     const users = await User.find({isTherapist: 'false'} );    
-    res.render('Photos/new-photo', {photos,users});
-    console.log('funciona');
+    res.render('Photos/all-photos', {photos,users});
 });
 
-router.get('/images', isAuthenticated, async (req, res) => {
+router.get('/images/add', isAuthenticated, async (req, res) => {
+    const photos = await Photo.find({ ID_Ter: req.user.id });
+    const users = await User.find({isTherapist: 'false'} );   
+    res.render('Photos/new-photo', {photos,users});
+});
+
+router.get('/images/consul', isAuthenticated, async (req, res) => {
     const photos = await Photo.find({ ID_Pac: req.user.id });
-    res.render('Photos/all-photos', {photos});
+    res.render('Photos/all-photosConsultant', {photos});
 });
 
 router.get('/images/carpetas', isAuthenticated, async (req, res) => {
@@ -52,7 +55,7 @@ router.get('/images/carpetas', isAuthenticated, async (req, res) => {
 // Mostrar
 router.post('/images/add', isAuthenticated, async (req, res) => {
     const { ID_Ter, ID_Pac,TipoArchivo, title, description } = req.body;
-     
+    console.log('funciona');
     // Saving Image in Cloudinary
     try {
         const result = await cloudinary.v2.uploader.upload(req.file.path);
@@ -63,6 +66,7 @@ router.post('/images/add', isAuthenticated, async (req, res) => {
         const newPhotoFot = new Photofot({ID_Ter, ID_Pac,TipoArchivo, title, description, imageURL: result.url, public_id: result.public_id});
 
         await newPhoto.save();
+        console.log('funciona');
     if (newPhotoAr.TipoArchivo == "Archivo")
         {
         await newPhotoAr.save();
@@ -81,7 +85,7 @@ router.post('/images/add', isAuthenticated, async (req, res) => {
     } catch (e) {
         console.log(e)
     }
-    res.redirect('/');
+    res.redirect('/images');
 });
 
 //Eliminar imagen
@@ -90,7 +94,7 @@ router.get('/images/delete/:photo_id', isAuthenticated, async (req, res) => {
     const photo = await Photo.findByIdAndRemove(photo_id);
     const result = await cloudinary.v2.uploader.destroy(photo.public_id);
     console.log(result)
-    res.redirect('/images/add');
+    res.redirect('/images');
 });
 
 //Download imagen
