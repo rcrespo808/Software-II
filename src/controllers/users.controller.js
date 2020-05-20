@@ -32,7 +32,7 @@ usersCtrl.createConsultant = async (req, res) => {
       res.redirect("/users/consultant");
     } else {
       // Saving a New User
-      const newUser = new User({ name, email, password });
+      const newUser = new User({ name, email, password, isConsultant:true});
       newUser.password = await newUser.encryptPassword(password);
       await newUser.save();
       req.flash("success_msg", "Registrado Exitosamente");

@@ -6,15 +6,26 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
-          <li class="nav-item active">
-            <a class="nav-link" href="/">Inicio <span class="sr-only">(current)</span></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/about">Sobre</a>
-          </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="/">Inicio <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/about">Sobre</a>
+        </li>
       </ul>
       <ul class="navbar-nav ml-auto">
         {{#if user}}
+            {{#if user.isConsultant}}
+
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Imagen 
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="/images">Ver</a>
+              </div>
+            </li>
+          {{/if}}
           {{#if user.isTherapist}}
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -25,20 +36,25 @@
                 <a class="dropdown-item" href="/consultant/add">Agregar</a>
               </div>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/images/add">Imagenes</a>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Imagen 
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="/images">Ver</a>
+                <a class="dropdown-item" href="/images/add">Agregar</a>
+              </div>
             </li>
-            {{else}}
-              <li class="nav-item">
-              <a class="nav-link" href="/images/consul">Imagenes</a>
-             <li class="nav-item">
-              <a class="nav-link" href="/images/carpetas">Carpetas</a>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Notes
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="/notes">Ver</a>
+                <a class="dropdown-item" href="/notes/add">Agregar</a>
+              </div>
             </li>
           {{/if}}
-
-          
-          
-
           {{#if user.isAdmin}}
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -49,14 +65,14 @@
                 <a class="dropdown-item" href="/therapist/add">Agregar</a>
               </div>
             </li>
-          {{/if}}  
+          {{/if}}
           <li class="nav-item">
             <a class="nav-link" href="/users/logout">Salir</a>
           </li>
-        {{else}}
-          <li class="nav-item">
-            <a class="nav-link" href="/users/signin">Log In</a>
-          </li>
+          {{else}}
+            <li class="nav-item">
+              <a class="nav-link" href="/users/signin">Log In</a>
+            </li>
         {{/if}}
       </ul>
     </div>
