@@ -29,17 +29,6 @@ app.engine('.hbs', exphbs({
 app.set('view engine', '.hbs');
 
 // middlewares
-app.use(morgan('dev'));
-app.use(express.json(   ));
-app.use(express.urlencoded({extended: false}));
-const storage = multer.diskStorage({
-    destination: path.join(__dirname, 'public/uploads'),
-    filename: (req, file, cb) => {
-        cb(null, new Date().getTime() + path.extname(file.originalname));
-    }
-});
-app.use(multer({storage}).single('image'));
-
 app.use(express.urlencoded({extended: false}));
 app.use(methodOverride('_method'));
 app.use(session({
@@ -50,6 +39,16 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
+app.use(morgan('dev'));
+app.use(express.json(   ));
+app.use(express.urlencoded({extended: false}));
+const storage = multer.diskStorage({
+    destination: path.join(__dirname, 'public/uploads'),
+    filename: (req, file, cb) => {
+        cb(null, new Date().getTime() + path.extname(file.originalname));
+    }
+});
+app.use(multer({storage}).single('image'));
 
 
 // Global Variables

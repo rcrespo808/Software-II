@@ -11,11 +11,21 @@
                      
                       <!--<input type="text" name="ID_Ter" class="form-control"    value= {{user.id}} autofocus>}-->
                     </div>
-                        <input type="radio" name="ID_Ter" value={{user.id}}>{{user.id}}
+                        <input type="radio" name="ID_Ter" value={{user.id}}>{{user.name}}
 
 
-                     <div class="form-group">                                  
-                        <input type="text" name="ID_Pac" class="form-control" placeholder="Ingrese ID del consultante" autofocus>
+                     <div class="form-group">
+                        
+                     <select id="ID_Pac" name="ID_Pac">
+                      {{#each users}}
+                     
+                      
+                     <tr>  
+                    <option value= {{_id}}>{{name}}</option>
+                    </tr>
+                     {{/each}}
+                    </select>
+                   
                     </div>
 
 
@@ -26,12 +36,16 @@
                     <option value="Video">Video</option>
                     <option value="Audio">Audio</option>
                     </select>
-
                          </div>
+
+                         
                     <div class="form-group">
                         <input type="text" name="title" class="form-control" placeholder="Image Title" autofocus>
                     </div>
                     
+                    
+                    
+
                     <div class="form-group">
                         <textarea name="description" class="form-control" placeholder="Image Description"></textarea>
                     </div>
@@ -71,7 +85,7 @@
                     <td>{{description}}</td>
                     <td>
                         <a href="{{imageURL}}" target="_blank" class="btn btn-primary">View</a>
-                        <a href="/images/update/{{_id}}"  class="btn btn-primary">update</a>
+                        <a   class="btn btn-primary" target="_blank" onclick='alert("Nose actualizar mongo, pero prometo hacerlo para la tecno :(")' >update</a>
                         <a href="/images/download/{{_id}}" download="new" target="_blank" class="btn btn-primary">Descargar </a>
                         <a href="/images/delete/{{_id}}" class="btn btn-danger">Delete</a>
                     </td>
