@@ -1,177 +1,47 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-"http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd"><head>
-<meta http-equiv=Content-Type content="text/html; charset=utf-8">
-<title></title>
-<style type="text/css">
- 
-body, html { height:100%;
-	margin:0;
-	padding:0;
-	width:100%;
-	background-color:silver;
-	}
- 
-#uno{ border:1px solid black;
-	width:49.5%;
-	display:inline-block;
-	margin:auto;
-	height:49.5%;
-	background-color:blue;
-	}
-#dos{ border:1px solid black;
-	width:49.5%;
-	display:inline-block;
-	height:49.5%;
-	background-color:green;
-	}
-#tres{ border:1px solid black;
-	width:49.5%;
-	display:inline-block;
-	height:49.5%;
-	background-color:yellow;
-	}
-#cuatro{ border:1px solid black;
-	width:49.5%;
-	display:inline-block;
-	height:49.5%;
-	background-color:red;
-	}
-</style>
-</head>
-
-  <script src="jquery.js"></script>
-  <script src="handlebars.min.js"></script>
-  <script src="handlebars_if_eq.js"></script>
-  <script src="handlebars_data.js"></script>
-  <script src="handlebars_process.js"></script>
-<body>
-	<div id="uno">Archivo
-         <table class="table">
-            <thead>
-                <tr>
-                    
-                    <th>Title</th>
-                    <th>Description</th>
-                    <th>Operations</th>
-                </tr>
-            </thead>
-
-
-            <tbody>
-                
-                {{#each photoarchivos}}
-               
-                    <tr>
-                    <td>{{TipoArchivo}}</td>    
-                    <td>{{title}}</td>
-                    <td>{{description}}</td>
-                    <td>
-                        <a href="{{imageURL}}" target="_blank" class="btn btn-primary">View</a>
-                        <a href="/images/downloadarc/{{_id}}" download="new" target="_blank" class="btn btn-primary">Descargar </a>
-                         </td>
-                </tr>
-              
-                {{/each}}
-            </tbody>
-        </table>
+<div class="card text-center mb-3">
+    <div class="card-body">   
+            <h2 class="card-title">Archivos</h2>             
+            {{#each photoarchivos}}
+            <img class="card-img-top" src="{{imageURL}}" alt="Card image cap">           
+            <h3 class="card-subtitle mb-2 text-muted">{{title}}</h3>
+            <p class="card-text">{{description}}</p>            
+            <a href="/images/downloadarc/{{_id}}" download="new" target="_blank" class="btn btn-primary">Descargar </a>                               
+            {{/each}}
     </div>
-	<div id="dos">video
-<table class="table">
-            <thead>
-                <tr>
-                    
-                    <th>Title</th>
-                    <th>Description</th>
-                    <th>Operations</th>
-                </tr>
-            </thead>
+</div>
 
-
-            <tbody>
-                
-                {{#each photovideos}}
-                
-                    <tr>
-                   
-                    <td>{{title}}</td>
-                    <td>{{description}}</td>
-                    <td>
-                        <a href="{{imageURL}}" target="_blank" class="btn btn-primary">View</a>
-                        <a href="/images/downloadvid/{{_id}}" download="new" target="_blank" class="btn btn-primary">Descargar </a>
-                         </td>
-                </tr>
-                
-                {{/each}}
-            </tbody>
-        </table>
-
+<div class="card text-center mb-3">
+    <div class="card-body">   
+            <h2 class="card-title">Videos</h2>             
+            {{#each photovideos}}
+            <img class="card-img-top" src="{{imageURL}}" alt="Card image cap">           
+            <h3 class="card-title mb-2 text-muted">{{title}}</h3>
+            <p class="card-text">{{description}}</p>            
+            <a href="/images/downloadvid/{{_id}}" download="new" target="_blank" class="btn btn-primary">Descargar </a>                               
+            {{/each}}
     </div>
-	<br>
-	<div id="tres">imagen
-        <table class="table">
-            <thead>
-                <tr>                    
-                    <th>Title</th>
-                    <th>Description</th>
-                    <th>Operations</th>
-                </tr>
-            </thead>
+</div>
 
-
-            <tbody>
-                
-                {{#each photofotos}}
-             
-                    <tr>
-                    
-                 
-                    <td>{{title}}</td>
-                    <td>{{description}}</td>
-                    <td>
-                        <a href="{{imageURL}}" target="_blank" class="btn btn-primary">View</a>
-                        <a href="/images/downloadfot/{{_id}}" download="new" target="_blank" class="btn btn-primary">Descargar </a>
-                         </td>
-                </tr>
-                
-                {{/each}}
-            </tbody>
-        </table>
+<div class="card text-center mb-3">
+    <div class="card-body">   
+            <h2 class="card-title">Imagenes</h2>             
+            {{#each photofotos}}
+            <img class="card-img-top" src="{{imageURL}}" alt="Card image cap">           
+            <h3 class="card-title mb-2 text-muted">{{title}}</h3>
+            <p class="card-text">{{description}}</p>            
+            <a href="/images/downloadfot/{{_id}}" download="new" target="_blank" class="btn btn-primary">Descargar </a>                               
+            {{/each}}
     </div>
-	<div id="cuatro">audio
-        <table class="table">
-            <thead>
-                <tr>
-                    
-                    <th>Title</th>
-                    <th>Description</th>
-                    <th>Operations</th>
-                </tr>
-            </thead>
+</div>
 
-
-            <tbody>
-                
-                {{#each photoaudios}}
-                
-                    <tr>
-                    
-                    
-                    <td>{{title}}</td>
-                    <td>{{description}}</td>
-                    <td>
-                        <a href="{{imageURL}}" target="_blank" class="btn btn-primary">View</a>
-                        <a href="/images/downloadaud/{{_id}}" download="new" target="_blank" class="btn btn-primary">Descargar </a>
-                         </td>
-                </tr>
-                {{/each}}
-            </tbody>
-        </table>
+<div class="card text-center mb-3">
+    <div class="card-body">   
+        <h2 class="card-title">Audio</h2>             
+        {{#each photoaudios}}
+        <img class="card-img-top" src="{{imageURL}}" alt="Card image cap">           
+        <h3 class="card-title mb-2 text-muted">{{title}}</h3>
+        <p class="card-text">{{description}}</p>            
+        <a href="/images/downloadaud/{{_id}}" download="new" target="_blank" class="btn btn-primary">Descargar </a>                               
+        {{/each}}
     </div>
-</body>
-</html>
-<script>
-    
-Handlebars.registerHelper("xif", function (expression, options) {
-    return Handlebars.helpers["x"].apply(this, [expression, options]) ? options.fn(this) : options.inverse(this);
-  });
-</script>
+</div>

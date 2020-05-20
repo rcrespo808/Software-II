@@ -16,14 +16,12 @@
       <ul class="navbar-nav ml-auto">
         {{#if user}}
             {{#if user.isConsultant}}
-
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Imagen 
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="/images">Ver</a>
-              </div>
+              <li class="nav-item">
+                <a class="nav-link" href="/images/consul">Imagenes</a>
+              <li>
+              <li class="nav-item">
+                <a class="nav-link" href="/images/carpetas">Carpetas</a>
+              <li>
             </li>
           {{/if}}
           {{#if user.isTherapist}}
