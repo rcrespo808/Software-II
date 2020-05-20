@@ -6,8 +6,8 @@ const TherapistSchema = new Schema(
     lastName: { type: String, required: true },
     gender: { type: String, required: true },
     age: { type: Number, required: true },
-    birthDate: { type: Date},
-    user: {type: String, required: true}
+    birthDate: { type: Date, required: true },
+    user: {type: String, required: true }
   },
     {timestamps: true},
 );
