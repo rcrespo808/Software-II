@@ -9,7 +9,8 @@ const UserSchema = new Schema({
   password: { type: String, required: true },
   date: { type: Date, default: Date.now },
   isTherapist: {type: Boolean, default: false},
-  isAdmin: {type: Boolean, default: false}
+  isAdmin: {type: Boolean, default: false},
+  isConsultant: {type: Boolean, default: false}
 });
 
 UserSchema.methods.encryptPassword = async password => {
