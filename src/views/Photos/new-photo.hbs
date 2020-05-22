@@ -15,11 +15,9 @@
                     Consultant:                     
                     <select id="ID_Pac" name="ID_Pac">
                         {{#each users}}
-                            {{#if isConsultant}}
                             <tr>  
                                 <option value={{_id}}> {{name}} </option>
                             </tr>
-                            {{/if}}
                         {{/each}}
                     </select>
                 </div>
