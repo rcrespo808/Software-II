@@ -27,18 +27,7 @@ notesCtrl.createNewNote = async (req, res) => {
     newNote.user = req.user.id;
     await newNote.save();
     req.flash("success_msg", "Nota Agregado Exitosamente");
-    console.log ('mail?')
-    mail.sendmailWithOptions({
-      from: 'Apoyo_App@gmail.com',
-      to: 'rcrespo808@gmail.com',
-      subject: 'Nodemailer - Test',
-      text: 'Wooohooo it works!!',
-      template: 'index',
-      context: {
-          name: 'Usuario1',
-          hiperlink: 'www.google.com'
-      } 
-    });
+
     res.redirect("/notes");
   }
 };

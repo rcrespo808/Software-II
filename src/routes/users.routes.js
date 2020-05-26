@@ -7,7 +7,12 @@ const {
   createTherapist,
   renderSigninForm,
   signin,
-  logout
+  logout,
+  renderForgotForm,
+  forgot,
+  renderResetForm,
+  reset
+
 } = require("../controllers/users.controller");
 
 // Login Consultant
@@ -28,5 +33,14 @@ router.post("/users/signin", signin);
 // Logout
 router.get("/users/logout", logout);
 
+// Forgot
+router.get("/users/forgot", renderForgotForm);
+
+router.post("/users/forgot", forgot);
+
+// Reset
+router.get("/users/reset/:token", renderResetForm);
+
+router.post("/users/reset/:token", reset);
 
 module.exports = router;
