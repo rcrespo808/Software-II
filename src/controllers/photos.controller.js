@@ -3,6 +3,8 @@ const { Router } = require('express');
 const router = Router();
 // Helpers
 
+var async = require('async');
+
 const cloudinary = require('cloudinary');
 cloudinary.config({
     cloud_name: 'upsa',
@@ -24,9 +26,13 @@ const fs = require('fs-extra');
 //Mostrar
 
 
-photosCrl.showconsul = async (req, res) => {
-    const photos = await Photo.find({ ID_Pac: req.user.id });
-    res.render('Photos/all-photosConsultant', {photos});
+photosCrl.showconsul = (req, res) => {
+    async.waterfall([
+        function done() {
+            const photos = Photo.find({ ID_Pac: req.user.id });
+            res.render('Photos/all-photosConsultant', {photos});
+        }
+    ]);
 };
 
 photosCrl.showcarpeta = async (req, res) => {
@@ -169,5 +175,5 @@ photosCrl.updatePhoto = async (req, res) => {
   }   ;
 
 
-  module.exports = router;
+  module.exports = photosCrl;
 ///////////////////////////////////////////
