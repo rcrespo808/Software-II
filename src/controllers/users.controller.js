@@ -145,7 +145,7 @@ usersCtrl.forgot = (req,res) => {
       var mailOptions = {
         to: user.email,
         from: 'Apoyo_App@gmail.com', // TODO: email sender
-        subject: 'Nodemailer - Test',
+        subject: 'Reinicio de Password',
         text: 'Estas recibiendo este correo porque tu (o alguien mas) ha pedido la reiniciar el password para esta cuenta.\n\n' +
           'ppor favor sigue el siguiente hipervinculo, o pegalo en tu barra de navegador para continuar el proceso:\n\n' +
           'http://' + req.headers.host + '/users/reset/' + token + '\n\n' +
@@ -160,20 +160,21 @@ usersCtrl.forgot = (req,res) => {
   ])
 }
 
-usersCtrl.renderResetForm = (req, res) => {
-  res.render("users/reset");
+usersCtrl.renderResetForm = async (req, res) => {
+  res.render("users/reset", { token: req.params.token });
 };
 
 usersCtrl.reset = (req,res) => {
   async.waterfall([
     function(done) {
-      User.findOne({ resetPasswordToken: req.params.token, resetPasswordExpires: { $gt: Date.now() } }, function(err, user) {
+      User.findOne({ resetPasswordToken: req.params.token, resetPasswordExpires: { $gt: Date.now() } }, async function(err, user) {
         if (!user) {
           req.flash('error', 'Password reset token is invalid or has expired.');
-          return res.redirect('back');
+          setTimeout(()=>{res.redirect("./users/forgot");}, 3000);
         }
 
-        user.password = req.body.password;
+        user.password = await user.encryptPassword( req.body.password);
+       
         user.resetPasswordToken = undefined;
         user.resetPasswordExpires = undefined;
 
@@ -195,8 +196,8 @@ usersCtrl.reset = (req,res) => {
       var mailOptions = {
           to: user.email,
           from: 'Apoyo_App@gmail.com', // TODO: email sender
-          subject: 'Nodemailer - Test',
-        text: 'Hola,\n\n' +
+          subject: 'Reinicio de Password',
+          text: 'Hola,\n\n' +
           'Esta es la confirmacion de que se ha reinisiado su password asociado al email: ' + user.email + ' \n'
       };
       smtpTransport.sendMail(mailOptions, function(err) {
